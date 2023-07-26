@@ -1,33 +1,26 @@
-// src/components/FoodBox.jsx
-
 import React from "react";
+import { Card, Col, Button } from "antd";
 
-const FoodBox = ({ food, onDelete }) => {
-  const { id, name, calories, image, servings } = food;
-  const totalCalories = calories * servings;
-
-  const handleDeleteClick = () => {
-    onDelete(id);
-  };
+function FoodBox({ food, onDelete }) {
+  const { name, calories, image, servings } = food;
 
   return (
-    <div>
-      <p>{name}</p>
-      <img src={image} alt={name} style={{ height: "200px"}} />
-      <p>Calories: {calories}</p>
-      <p>Servings {servings}</p>
-      <p>
-        <b>Total Calories: {totalCalories} kcal</b>
-      </p>
-      <button onClick={handleDeleteClick}>Delete</button>
-    </div>
+    <Col>
+      <Card title={name} style={{ width: 230, height: 300, margin: 10 }}>
+        <img src={image} height={60} alt={name} />
+        <p>Calories: {calories}</p>
+        <p>Servings: {servings}</p>
+        <p>
+          <b>Total Calories: {calories * servings} kcal</b>
+        </p>
+        <Button type="primary" onClick={() => onDelete(food.id)}>
+          Delete
+        </Button>
+      </Card>
+    </Col>
   );
-};
+}
 
 export default FoodBox;
-
-  
-
-
 
 

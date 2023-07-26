@@ -1,77 +1,44 @@
-// src/components/AddFoodForm.jsx
+import { Divider, Input, Button, Form } from "antd";
 
+function AddFoodForm({ addFood }) {
+  const [form] = Form.useForm();
 
-import { useState } from "react";
+  const handleSubmit = () => {
+    form.validateFields().then((values) => {
+      addFood(values);
+      form.resetFields();
+    });
+  };
 
-function AddFoodForm({addFood}) {
-    
-    const [name, setName] = useState("");
-    const [image, setImage] = useState("");
-    const [calories, setCalories] = useState("");
-    const [servings, setServings] = useState("");
+  return (
+    <Form form={form} onFinish={handleSubmit}>
+      <Divider>Add Food Entry</Divider>
 
-    const handleNameInput = e => setName(e.target.value);
-  
-    const handleImageInput = e => setImage(e.target.value);
-  
-    const handleCaloriesInput = e => setCalories(e.target.value);
-  
-    const handleServingsInput = e => setServings(e.target.checked);
+      <Form.Item label="Name" name="name" rules={[{ required: true, message: "Please enter the name of the food" }]}>
+        <Input />
+      </Form.Item>
 
+      <Form.Item label="Image" name="image" rules={[{ required: true, message: "Please enter the image URL" }]}>
+        <Input />
+      </Form.Item>
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const newFood = { name, image, calories, servings };
-       
-        addFood(newFood); 
-        setName("");
-        setImage("");
-        setCalories("");
-        setServings("");
-      };
+      <Form.Item label="Calories" name="calories" rules={[{ required: true, message: "Please enter the number of calories" }]}>
+        <Input type="number" />
+      </Form.Item>
 
-      
-    return (
-      <div className="food">
-        <h4>Add Food</h4>
-        <form onSubmit={handleSubmit}> 
-          <label>Name </label>
-          <input 
-            type="text" 
-            name="name" 
-            value={name} 
-            onChange={handleNameInput} 
-          />
-  
-          <label>Image </label>
-          <input 
-            type="text" 
-            name="image" 
-            value={image} 
-            onChange={handleImageInput} 
-          />
-  
-          <label>Calories</label>
-          <input 
-            type="number" 
-            name="calories" 
-            value={calories} 
-            onChange={handleCaloriesInput} 
-          />
-  
-          <label>Servings </label>
-          <input 
-            type="number" 
-            name="servings" 
-            checked={servings} 
-            onChange={handleServingsInput} 
-          />
-  
-          <button type="submit">Create</button>
-        </form>
-      </div>
-    );
-  }
-  
-  export default AddFoodForm;
+      <Form.Item label="Servings" name="servings" rules={[{ required: true, message: "Please enter the number of servings" }]}>
+        <Input type="number" />
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Create
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+}
+
+export default AddFoodForm;
+
   

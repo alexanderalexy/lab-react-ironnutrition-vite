@@ -23,6 +23,7 @@ function AddFoodForm() {
 
       <Button type="submit">Create</Button>
     </form>
+    
   );
 }
 

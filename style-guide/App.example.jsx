@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       {/* Display Search component here */}
 
-      <Divider>Food List</Divider>
+      <Divider><FoodList /></Divider>
 
       <Row style={{ width: "100%", justifyContent: "center" }}>
         {/* Render the list of Food Box components here */}
