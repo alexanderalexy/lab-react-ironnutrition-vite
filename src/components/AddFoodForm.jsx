@@ -31,8 +31,6 @@ function AddFoodForm({addFood}) {
       };
 
       
-         
-  
     return (
       <div className="food">
         <h4>Add Food</h4>
